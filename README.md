@@ -291,9 +291,38 @@ stretch - fills the whole height of the cell (this is the default)
 ## You Do: Basic UI Component with CSS Grid
 `mkdir` a practice folder, `cd` into it, and `touch` an `index.html` and a `style.css` file. Your goal is to make the following layout with CSS Grid:
 
-![]()
+![](https://res.cloudinary.com/briandanger/image/upload/v1569408657/Screen_Shot_2019-09-25_at_6.50.44_AM_kgxb7k.png)
 
-Apply 
+You can start with the following HTML:
+```html
+<body>
+  <header>
 
+  </header>
+  <aside>
+
+  </aside>
+  <main>
+    <article>
+
+    </article>
+    <section>
+      <img src="" alt="">
+      <img src="" alt="">
+      <img src="" alt="">
+    </section>
+  </main>
+  <footer>
+
+  </footer>
+</body>
+```
+
+## Further Reading
+There is a **LOT** more possible with Flexbox and Grid, especially Grid. The best guides that we know of online can be found at CSS Tricks:
+- [Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+- [Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+>Note: Despite the power of Flexbox and Grid, remind yourself that many times you *won't need either*. Try to reserve using them only when it's necessary to avoid overcomplicating your code.
 
 
