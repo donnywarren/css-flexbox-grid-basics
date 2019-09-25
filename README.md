@@ -126,6 +126,24 @@ Adding Flexbox properties to items is much less common than adding properties to
 >Note: For more item properties and more in-depth explanations of the above, refer to the [CSS tricks guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## You Do: Basic UI Components with Flexbox
+
 `mkdir` a practice folder, `cd` into it, and `touch` an `index.html` and a `style.css` file. Your goal is to make the following header with flexbox:
+
 ![](https://res.cloudinary.com/briandanger/image/upload/v1569403551/Screen_Shot_2019-09-25_at_5.25.36_AM_t6ive2.png)
+
+You can use the following HTML; however, you will have to write all of the CSS yourself:
+
+```html
+<header>
+    <h1>CoolStartup</h1>
+    <nav>
+      <a href="#">About</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Contact Us</a>
+      <button>Sign Up</button>
+    </nav>
+  </header>
+```
+<hr>
 
