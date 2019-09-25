@@ -126,7 +126,6 @@ Adding Flexbox properties to items is much less common than adding properties to
 >Note: For more item properties and more in-depth explanations of the above, refer to the [CSS tricks guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
 
 ## You Do: Basic UI Components with Flexbox
-
 `mkdir` a practice folder, `cd` into it, and `touch` an `index.html` and a `style.css` file. Your goal is to make the following header with flexbox:
 
 ![](https://res.cloudinary.com/briandanger/image/upload/v1569403551/Screen_Shot_2019-09-25_at_5.25.36_AM_t6ive2.png)
@@ -146,4 +145,155 @@ You can use the following HTML; however, you will have to write all of the CSS y
   </header>
 ```
 <hr>
+
+## Intro to CSS Grid
+CSS Grid Layout is a powerful layout system available in CSS. You work with Grid Layout by applying CSS rules both to a parent element (which becomes the Grid Container) and to that element's children (which become Grid Items). This lesson will only cover the most fundamental CSS Grid tools. There are many more! For a deep read, check out [CSS Trick's Grid Guide](https://css-tricks.com/snippets/css/complete-guide-grid).
+
+## Grid Container Properties
+Like Flexbox, it's best to begin by focusing on the container's properties first.
+
+#### grid-template-columns and grid-template-rows
+Defines the columns and rows of the grid with a space-separated list of values. The values represent the track size, and the space between them represents the grid line.
+
+For example, this code...
+```css
+.container {
+  grid-template-columns: 40px 50px auto 50px 40px;
+  grid-template-rows: 25% 100px auto;
+}
+```
+
+... would produce the following grid:
+![](https://css-tricks.com/wp-content/uploads/2018/11/template-columns-rows-01.svg)
+
+>Note: Items within such a container will simply fall into the grid in order, so the above grid is built to hold 15 items. If the grid container has fewer than 15 items, those items will match the grid until they run out. If the grid container has more than 15 items, those items will continue to follow the columns, but will no longer match the rows, as there are no set rules for any rows beyond the fourth.
+
+Along with `px` values and `%` values, the `fr` unit allows you to set the size of a track as a fraction of the free space of the grid container. This is different than `auto`, which will take up as much space as the content. For example, this will set each item to one third the width of the grid container:
+
+```css
+.container {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+```
+
+The free space is calculated after any non-flexible items.
+
+#### grid-column-gap and grid-row-gap
+Specifies the size of the grid lines. You can think of it like setting the width of the gutters between the columns/rows. For example, the following code...
+```css
+.container {
+  grid-template-columns: 100px 50px 100px;
+  grid-template-rows: 80px auto 80px; 
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
+}
+```
+
+... would produce the following layout:
+![](https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-gap.svg)
+
+>Note: The grid- prefix will be removed and grid-column-gap and grid-row-gap renamed to column-gap and row-gap. The unprefixed properties are already supported in Chrome 68+, Safari 11.2 Release 50+ and Opera 54+.
+
+#### justify-items
+Aligns grid items along the inline (row) axis (as opposed to align-items which aligns along the block (column) axis). This value applies to all grid items inside the container.
+
+Values:
+
+start - aligns items to be flush with the start edge of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-start.svg)
+
+end - aligns items to be flush with the end edge of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-end.svg)
+
+center - aligns items in the center of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-center.svg)
+
+stretch - fills the whole width of the cell (this is the default)
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-items-stretch.svg)
+
+#### align-items
+Aligns grid items along the block (column) axis (as opposed to justify-items which aligns along the inline (row) axis). This value applies to all grid items inside the container.
+
+Values:
+
+start - aligns items to be flush with the start edge of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-items-start.svg)
+
+end - aligns items to be flush with the end edge of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-items-end.svg)
+
+center - aligns items in the center of their cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-items-center.svg)
+
+stretch - fills the whole height of the cell (this is the default)
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-items-stretch.svg)
+
+## Grid Item Properties
+>Note: float, display: inline-block, display: table-cell, vertical-align and column-* properties have no effect on a grid item.
+
+#### grid-column-start, grid-column-end, grid-row-start, and grid-row-end
+Determines a grid item's location within the grid by referring to specific grid lines. grid-column-start/grid-row-start is the line where the item begins, and grid-column-end/grid-row-end is the line where the item ends.
+
+Values:
+
+<line> - can be a number to refer to a numbered grid line, or a name to refer to a named grid line
+span <number> - the item will span across the provided number of grid tracks
+span <name> - the item will span across until it hits the next line with the provided name
+auto - indicates auto-placement, an automatic span, or a default span of one
+
+For example:
+```css
+.item-a {
+  grid-column-start: 2;
+  grid-column-end: five;
+  grid-row-start: row1-start;
+  grid-row-end: 3;
+}
+```
+
+Would result in:
+![](https://css-tricks.com/wp-content/uploads/2018/11/grid-column-row-start-end-01.svg)
+
+#### justify-self
+Aligns a grid item inside a cell along the inline (row) axis (as opposed to align-self which aligns along the block (column) axis). This value applies to a grid item inside a single cell.
+
+Values:
+
+start - aligns the grid item to be flush with the start edge of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-start.svg)
+
+end - aligns the grid item to be flush with the end edge of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-end.svg)
+
+center - aligns the grid item in the center of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-center.svg)
+
+stretch - fills the whole width of the cell (this is the default)
+![](https://css-tricks.com/wp-content/uploads/2018/11/justify-self-stretch.svg)
+
+#### align-self
+Aligns a grid item inside a cell along the block (column) axis (as opposed to justify-self which aligns along the inline (row) axis). This value applies to the content inside a single grid item.
+
+Values:
+
+start - aligns the grid item to be flush with the start edge of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-self-start.svg)
+
+end - aligns the grid item to be flush with the end edge of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-self-end.svg)
+
+center - aligns the grid item in the center of the cell
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-self-center.svg)
+
+stretch - fills the whole height of the cell (this is the default)
+![](https://css-tricks.com/wp-content/uploads/2018/11/align-self-stretch.svg)
+
+## You Do: Basic UI Component with CSS Grid
+`mkdir` a practice folder, `cd` into it, and `touch` an `index.html` and a `style.css` file. Your goal is to make the following layout with CSS Grid:
+
+![]()
+
+Apply 
+
+
 
